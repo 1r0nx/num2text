@@ -36,8 +36,9 @@ git clone https://github.com/1r0nx/num2text.git
 cd num2text
 chmod +x build.sh
 ./build.sh
+sudo cp dist/* /usr/bin/
 ```
-All the executables will be in dist/
+All the executable will be in dist/
 
 Or run it as a script:
 ```bash
@@ -46,16 +47,49 @@ cd num2text
 chmod +x *.py
 ```
 
-## ⚙️ Example
+## ⚙️ Example 1
 
 ```bash
-
+❯ hex2text -s "0x48 0x65 0x6C 0x6C 0x6F"
 ```
 
 Output:
 
 ```bash
+Hello
+```
 
+
+## ⚙️ Example 2
+
+```bash
+❯ ascii2text -s "72 101 108 108 111"
+```
+
+Output:
+
+```bash
+Hello
+```
+
+## ⚙️ Example 3
+
+```bash
+❯ cat bin.txt 
+01001000 01100101 01101100 01101100 01101111 00001010  
+ 
+❯ bin2text -f bin.txt 
+Hello
+```
+
+## ⚙️ Example 4
+
+```bash
+❯ cat octal.txt 
+110 145 154 154 157
+
+❯ octal2text -f octal.txt 
+Hello
 ```
 
 
