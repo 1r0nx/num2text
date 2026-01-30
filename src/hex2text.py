@@ -4,11 +4,6 @@ import argparse
 import re
 
 def hex_to_text(hex_string):
-    """
-    Convertit une string contenant de l'hex (avec ou sans séparateurs, ou avec 0x)
-    en texte UTF-8. Les octets à 1 chiffre sont préfixés par 0.
-    """
-    # Trouve soit "0xFF" soit des paires hex de 2 chiffres
     tokens = re.findall(r'0x[0-9a-fA-F]{1,2}|[0-9a-fA-F]{2}|[0-9a-fA-F]{1}', hex_string)
     bytes_list = []
     for t in tokens:
