@@ -13,7 +13,9 @@ Supports **binary**, **octal**, **ASCII**, and **hexadecimal** inputs.
 - Convert **octal** to text
 - Convert **ASCII codes** to text
 - Convert **hexadecimal** to text
-- Supports multiple numbers at once (separated by space/comma)
+- Split a string into fixed-size chunks (**str_split**)
+- Supports multiple numbers at once (separated by space/comma), `0x`/`0o`/`0b` prefixes, and contiguous forms
+- Robust: out-of-range or noisy tokens are skipped instead of crashing
 
 ---
 
@@ -30,21 +32,23 @@ pip3 install pyinstaller
 
 ## 🔧 Installation
 
-Clone the repository and create a binary:
+Clone the repository and build standalone binaries with PyInstaller:
 ```bash
 git clone https://github.com/1r0nx/num2text.git
 cd num2text
-chmod +x build.sh
-./build.sh
+for s in bin2text octal2text ascii2text hex2text str_split; do
+    pyinstaller --onefile "src/$s.py"
+done
 sudo cp dist/* /usr/bin/
 ```
-All the executable will be in dist/
+All the executables will be in dist/
 
-Or run it as a script:
+Or run them directly as scripts:
 ```bash
 git clone https://github.com/1r0nx/num2text.git
 cd num2text
-chmod +x *.py
+chmod +x src/*.py
+python3 src/hex2text.py -s "48 65 6C 6C 6F"
 ```
 
 ## ⚙️ Example 1
@@ -90,6 +94,18 @@ Hello
 
 ❯ octal2text -f octal.txt 
 Hello
+```
+
+## ⚙️ Example 5 — str_split
+
+Split a string into fixed-size chunks (handy to prepare input for the converters):
+
+```bash
+❯ str_split -s "48656c6c6f" -n 2
+48 65 6c 6c 6f
+
+❯ str_split -s "48656c6c6f" -n 2 -se ":"
+48:65:6c:6c:6f
 ```
 
 
